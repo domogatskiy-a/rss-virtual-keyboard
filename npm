@@ -1,0 +1,10 @@
+npm i --save-dev webpack
+npm i --save-dev webpack-cli
+
+npm i --save-dev eslint eslint-config-airbnb-base eslint-plugin-import
+
+
+npm init -y
+
+npm run lint
+npx webpack --config webpack.config.js
