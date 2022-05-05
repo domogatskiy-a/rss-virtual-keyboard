@@ -1,13 +1,19 @@
 npm i --save-dev webpack
 npm i --save-dev webpack-cli
 
+npm i --save-dev html-webpack-plugin
+
+npm i --save-dev style-loader css-loader
+
 npm i --save-dev eslint eslint-config-airbnb-base eslint-plugin-import
 
 npm i --save-dev eslint-plugin-prettier
 npm install --save-dev eslint-config-prettier
 npm i --save-dev prettier
 
-npm init -y
+//npm init -y
+npm install
+ - установка пакетов из package.json
 
 npm run lint
 npx webpack --config webpack.config.js
