@@ -1,5 +1,6 @@
 .wrapper {
   margin: 0 auto;
+  background: #294850;
   font-family: 'Helvetica', sans-serif;
 }
 
@@ -35,7 +36,7 @@
 
 .title {
   font-size: 20px;
-  color: #294850;
+  color: #f8f8f2;
 }
 
 .keyboard {

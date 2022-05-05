@@ -2,9 +2,10 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/assets/scripts/app.js',
     output: {
-        filename: '[hash].js',
+        //filename: '[hash].js',
+        filename: 'build.js',
         path: path.resolve(__dirname, 'dist'),
         clean: true,
     },
