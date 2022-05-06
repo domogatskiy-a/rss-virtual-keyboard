@@ -36,15 +36,25 @@ export class FunctionKey extends Key {
             this.keyboard.shift = action
             this.keyboard.update()
         }
+        if (this.fun === 'Ctrl') {
+            this.keyboard.ctrl = action
+            this.changeLang()
+        }
         if (this.fun === 'Alt') {
             this.keyboard.alt = action
-            this.keyboard.update()
+            this.changeLang()
         }
         if (this.fun === 'CapsLock') {
             if (action) {
                 this.keyboard.capsLock = !this.keyboard.capsLock
             }
             this.key.classList.toggle('active', this.keyboard.capsLock)
+            this.keyboard.update()
+        }
+    }
+    changeLang() {
+        if (this.keyboard.ctrl && this.keyboard.alt) {
+            this.keyboard.langEn = !this.keyboard.langEn
             this.keyboard.update()
         }
     }

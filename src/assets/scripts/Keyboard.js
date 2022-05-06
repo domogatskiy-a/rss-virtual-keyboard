@@ -14,9 +14,10 @@ export class Keyboard {
         this.capsLock = false
         this.alt = false
         this.shift = false
+        this.ctrl = false
         this.#initNodes()
 
-        this.addClickEventListener()
+        this.eventListener()
     }
 
     #initNodes() {
@@ -29,10 +30,6 @@ export class Keyboard {
 
         this.keyboard.classList = 'keyboard'
         this.id = 'keyboard'
-        if (localStorage.getItem('keyboardLang') !== null) {
-            this.langEn = localStorage.getItem('keyboardLang')
-        }
-        console.log(localStorage.getItem('keyboardLang'))
     }
 
     renderInterfaceKeyboard() {
@@ -46,6 +43,11 @@ export class Keyboard {
         this.wrapper.appendChild(this.keyboard)
 
         this.#renderKeys()
+
+        if (localStorage.getItem('keyboardLang') !== null) {
+            this.langEn = localStorage.getItem('keyboardLang') === 'true'
+            this.update()
+        }
     }
 
     #renderKeys() {
@@ -98,23 +100,35 @@ export class Keyboard {
         localStorage.setItem('keyboardLang', this.langEn)
     }
 
-    addClickEventListener() {
+    eventListener() {
         this.keyboard.addEventListener('mousedown', (e) => {
             //console.log(e.target.parentNode.parentNode)
-            this.eventHandler(e.target)
+            this.onClick(e.target)
         })
         this.keyboard.addEventListener('mouseup', (e) => {
-            this.eventHandler(e.target, false)
+            this.onClick(e.target, false)
+        })
+        document.addEventListener('keydown', (e) => {
+            console.log(e)
+            this.onPress(e.keyCode, true)
+        })
+        document.addEventListener('keyup', (e) => {
+            this.onPress(e.keyCode, false)
         })
 
         //keydown и keyup
         //event.code
     }
 
-    eventHandler(node, action = true) {
+    onClick(node, action = true) {
         const key = this.keys.find((i) => i.key == node.parentNode.parentNode)
         key.actionHandler(action)
 
         //console.log(key)
+    }
+
+    onPress(keyCode, action) {
+        const key = this.keys.find((i) => i.code == keyCode)
+        key.actionHandler(action)
     }
 }
