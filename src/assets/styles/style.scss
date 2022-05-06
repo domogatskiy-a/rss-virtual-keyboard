@@ -4,6 +4,7 @@ $color-text: #333333;
 $color-text-heder: #f8f8f2;
 $color-keybord-border: #444444;
 $color-text-key: #333333;
+$color-text-key-hover: #f8f8f2;
 $color-background-key: #e6e4dc;
 $color-background-key-hover: #5497a8;
 $color-background-key-active: #517f85;
@@ -11,6 +12,7 @@ $color-background-function-key: #c9c8bd;
 
 .wrapper {
     margin: 0 auto;
+    padding: 1px 0 10px;
     background: $color-background-body;
     font-family: 'Helvetica', sans-serif;
 }
@@ -18,17 +20,17 @@ $color-background-function-key: #c9c8bd;
 .textarea {
     display: block;
     width: 690px;
-    height: 200px;
+    height: 100px;
     margin: 10px auto 10px;
     padding: 10px;
     font-size: 18px;
     color: $color-text;
 }
 
-.cDown,
-.cUp,
-.shiftC,
-.capsL {
+.down,
+.capsShift,
+.shift,
+.caps {
     display: block;
     width: 100;
     min-height: 40px;
@@ -69,6 +71,7 @@ $color-background-function-key: #c9c8bd;
 }
 
 .key {
+    box-sizing: border-box;
     float: left;
     width: 40px;
     height: 40px;
@@ -86,48 +89,56 @@ $color-background-function-key: #c9c8bd;
 
 .key:hover {
     background: $color-background-key-hover;
+    color: $color-text-key-hover;
 }
 
 .key.active {
     background-color: $color-background-key-active;
-    border-radius: 50px;
+    border: 1px solid $color-background;
+    color: $color-text-key-hover;
 }
 
-.AltL,
-.AltR,
-.Up,
-.Left,
-.Down,
-.Right,
+.AltLeft,
+.AltRight,
+.ArrowUp,
+.ArrowLeft,
+.ArrowDown,
+.ArrowRight,
 .Backspace,
 .CapsLock,
-.CtrlL,
-.CtrlR,
-.Delete,
+.CtrlLeft,
+.CtrlRight,
+.Del,
 .Enter,
-.ShiftL,
-.ShiftR,
+.ShiftLeft,
+.ShiftRight,
 .Tab {
     font-weight: 600;
     background-color: $color-background-function-key;
 }
 
 .Tab {
-    width: 50px;
+    width: 54px;
 }
 
 .Backspace,
 .CapsLock,
-.ShiftL {
+.ShiftLeft {
     width: 100px;
+}
+
+.CapsLock {
+    width: 80px;
 }
 
 .Delete {
     width: 44px;
 }
 
-.Enter,
-.ShiftR {
+.Enter {
+    width: 106px;
+}
+.ShiftRight {
     width: 86px;
 }
 
@@ -135,8 +146,8 @@ $color-background-function-key: #c9c8bd;
     width: 331px;
 }
 
-.AltL,
-.AltR,
-.CtrlL {
+.AltLeft,
+.AltRight,
+.CtrlLeft {
     width: 55px;
 }

@@ -1,5 +1,6 @@
 .wrapper {
   margin: 0 auto;
+  padding: 1px 0 10px;
   background: #294850;
   font-family: 'Helvetica', sans-serif;
 }
@@ -7,17 +8,17 @@
 .textarea {
   display: block;
   width: 690px;
-  height: 200px;
+  height: 100px;
   margin: 10px auto 10px;
   padding: 10px;
   font-size: 18px;
   color: #333333;
 }
 
-.cDown,
-.cUp,
-.shiftC,
-.capsL {
+.down,
+.capsShift,
+.shift,
+.caps {
   display: block;
   width: 100;
   min-height: 40px;
@@ -58,6 +59,8 @@
 }
 
 .key {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   float: left;
   width: 40px;
   height: 40px;
@@ -79,48 +82,57 @@
 
 .key:hover {
   background: #5497a8;
+  color: #f8f8f2;
 }
 
 .key.active {
   background-color: #517f85;
-  border-radius: 50px;
+  border: 1px solid #f8f8f2;
+  color: #f8f8f2;
 }
 
-.AltL,
-.AltR,
-.Up,
-.Left,
-.Down,
-.Right,
+.AltLeft,
+.AltRight,
+.ArrowUp,
+.ArrowLeft,
+.ArrowDown,
+.ArrowRight,
 .Backspace,
 .CapsLock,
-.CtrlL,
-.CtrlR,
-.Delete,
+.CtrlLeft,
+.CtrlRight,
+.Del,
 .Enter,
-.ShiftL,
-.ShiftR,
+.ShiftLeft,
+.ShiftRight,
 .Tab {
   font-weight: 600;
   background-color: #c9c8bd;
 }
 
 .Tab {
-  width: 50px;
+  width: 54px;
 }
 
 .Backspace,
 .CapsLock,
-.ShiftL {
+.ShiftLeft {
   width: 100px;
+}
+
+.CapsLock {
+  width: 80px;
 }
 
 .Delete {
   width: 44px;
 }
 
-.Enter,
-.ShiftR {
+.Enter {
+  width: 106px;
+}
+
+.ShiftRight {
   width: 86px;
 }
 
@@ -128,9 +140,9 @@
   width: 331px;
 }
 
-.AltL,
-.AltR,
-.CtrlL {
+.AltLeft,
+.AltRight,
+.CtrlLeft {
   width: 55px;
 }
 /*# sourceMappingURL=style.css.map */
