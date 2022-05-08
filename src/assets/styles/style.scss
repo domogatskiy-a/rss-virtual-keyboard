@@ -10,6 +10,11 @@ $color-background-key-hover: #5497a8;
 $color-background-key-active: #517f85;
 $color-background-function-key: #c9c8bd;
 
+p {
+    text-align: center;
+    color: $color-text-heder;
+}
+
 .wrapper {
     margin: 0 auto;
     padding: 1px 0 10px;

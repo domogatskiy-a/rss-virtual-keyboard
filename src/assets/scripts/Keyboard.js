@@ -48,6 +48,13 @@ export class Keyboard {
             this.langEn = localStorage.getItem('keyboardLang') === 'true'
             this.update()
         }
+
+        let p = document.createElement('p')
+        p.innerHTML =
+            'Клавиатура создана в операционной системе Windows <br/> Для переключения языка комбинация: ctrl + alt'
+        this.wrapper.appendChild(p)
+
+        this.textarea.focus()
     }
 
     #renderKeys() {
@@ -108,6 +115,9 @@ export class Keyboard {
         this.keyboard.addEventListener('mouseup', (e) => {
             this.onClick(e, false)
         })
+        this.keyboard.addEventListener('mouseout', (e) => {
+            this.onClick(e, false)
+        })
         document.addEventListener('keydown', (e) => {
             //console.log(e)
             this.onPress(e, true)
@@ -123,6 +133,8 @@ export class Keyboard {
     onClick(e, action = true) {
         const key = this.keys.find((i) => i.key == e.target.parentNode.parentNode)
         if (key !== undefined) {
+            e.preventDefault()
+            action ? (key.active = true) : (key.active = false)
             key.actionHandler(e, action)
         }
 
@@ -132,6 +144,8 @@ export class Keyboard {
     onPress(e, action) {
         const key = this.keys.find((i) => i.code == e.code)
         if (key !== undefined) {
+            e.preventDefault()
+            action ? (key.active = true) : (key.active = false)
             key.actionHandler(e, action)
         }
     }

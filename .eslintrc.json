@@ -8,15 +8,15 @@
         "sourceType": "module"    
     },
     "extends": ["airbnb-base",
-        "plugin:prettier/recommended",
+        "plugin:prettier/recommended"
     ],
     "plugins": [
         "prettier"
-    ]
+    ],
     "rules": {
-        "prettier/prettier": ["error"],
-        "max-len": ["error", 100, 2, { "ignoreUrls": true}],
-        "no-console": ["error", { "allow": ["warn", "error"] }],
+        //"prettier/prettier": ["error"],
+        //"max-len": ["error", 100, 2, { "ignoreUrls": true}],
+        //"no-console": ["error", { "allow": ["warn", "error"] }],
         "no-alert": "error"
     }
 }

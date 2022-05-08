@@ -34,6 +34,7 @@ export class Key {
         this.key = document.createElement('div')
         this.rus = document.createElement('span')
         this.eng = document.createElement('span')
+        this.active = false
         this.initKey(
             code,
             enDown,
@@ -160,22 +161,27 @@ export class Key {
 
     actionHandler(e, action) {
         this.key.classList.toggle('active', action)
-        console.log(this.key)
+
+        //console.log(this.key)
 
         if (action) {
-            const cursor = this.keyboard.textarea.selectionStart
-            const text = this.keyboard.textarea.value
-
-            this.keyboard.textarea.value = `${text.slice(
-                0,
-                cursor
-            )}${this.getKeyValue()}${text.slice(cursor)}`
-            this.keyboard.textarea.selectionStart = cursor + 1
-            this.keyboard.textarea.selectionEnd = cursor + 1
+            this.displaySymbol()
         }
     }
 
+    displaySymbol() {
+        const cursor = this.keyboard.textarea.selectionStart
+        const text = this.keyboard.textarea.value
+
+        this.keyboard.textarea.value = `${text.slice(0, cursor)}${this.getKeyValue()}${text.slice(
+            cursor
+        )}`
+        this.keyboard.textarea.selectionStart = cursor + 1
+        this.keyboard.textarea.selectionEnd = cursor + 1
+    }
+
     getKeyValue() {
+        //console.log(1)
         if (this.keyboard.capsLock && this.keyboard.shift) {
             return this.keyboard.langEn ? this.enCapsShiftVal : this.ruCapsShiftVal
         } else if (this.keyboard.shift) {
@@ -186,3 +192,5 @@ export class Key {
         return this.keyboard.langEn ? this.enDownVal : this.ruDownVal
     }
 }
+
+//export default Key

@@ -27,7 +27,7 @@
     {"down": "х",         "capsShift": "х",         "caps": "Х",         "shift": "Х",         "code": "BracketLeft",  "keyCode": 160,  "type": "let"},
     {"down": "ъ",         "capsShift": "ъ",         "caps": "Ъ",         "shift": "Ъ",         "code": "BracketRight", "keyCode": 221,  "type": "let"},
     {"down": "\\",        "capsShift": "/",         "caps": "\\",        "shift": "/",         "code": "Backslash",    "keyCode": 220,  "type": "sym"},
-    {"down": "del",       "capsShift": "del",       "caps": "del",       "shift": "del",       "code": "Delete",       "keyCode": 46,   "type": "fun"},
+    {"down": "Del",       "capsShift": "Del",       "caps": "Del",       "shift": "Del",       "code": "Delete",       "keyCode": 46,   "type": "fun"},
     {"down": "CapsLock",  "capsShift": "CapsLock",  "caps": "CapsLock",  "shift": "CapsLock",  "code": "CapsLock",     "keyCode": 20,   "type": "fun"}, 
     {"down": "ф",         "capsShift": "ф",         "caps": "Ф",         "shift": "Ф",         "code": "KeyA",         "keyCode": 65,   "type": "let"},
     {"down": "ы",         "capsShift": "ы",         "caps": "Ы",         "shift": "Ы",         "code": "KeyS",         "keyCode": 83,   "type": "let"},
