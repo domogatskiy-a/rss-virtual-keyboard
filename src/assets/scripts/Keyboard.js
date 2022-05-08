@@ -58,8 +58,8 @@ export class Keyboard {
             if (this.keysData.eng[i].type !== 'fun') {
                 key = new Key(
                     this,
-                    this.keysData.eng[i].id,
                     this.keysData.eng[i].code,
+                    this.keysData.eng[i].KeyCode,
                     this.keysData.eng[i].down,
                     this.keysData.eng[i].capsShift,
                     this.keysData.eng[i].caps,
@@ -72,8 +72,8 @@ export class Keyboard {
             } else {
                 key = new FunctionKey(
                     this,
-                    this.keysData.eng[i].id,
                     this.keysData.eng[i].code,
+                    this.keysData.eng[i].keyCode,
                     this.keysData.eng[i].down,
                     this.keysData.eng[i].capsShift,
                     this.keysData.eng[i].caps,
@@ -103,32 +103,36 @@ export class Keyboard {
     eventListener() {
         this.keyboard.addEventListener('mousedown', (e) => {
             //console.log(e.target.parentNode.parentNode)
-            this.onClick(e.target)
+            this.onClick(e)
         })
         this.keyboard.addEventListener('mouseup', (e) => {
-            this.onClick(e.target, false)
+            this.onClick(e, false)
         })
         document.addEventListener('keydown', (e) => {
-            console.log(e)
-            this.onPress(e.keyCode, true)
+            //console.log(e)
+            this.onPress(e, true)
         })
         document.addEventListener('keyup', (e) => {
-            this.onPress(e.keyCode, false)
+            this.onPress(e, false)
         })
 
         //keydown и keyup
         //event.code
     }
 
-    onClick(node, action = true) {
-        const key = this.keys.find((i) => i.key == node.parentNode.parentNode)
-        key.actionHandler(action)
+    onClick(e, action = true) {
+        const key = this.keys.find((i) => i.key == e.target.parentNode.parentNode)
+        if (key !== undefined) {
+            key.actionHandler(e, action)
+        }
 
         //console.log(key)
     }
 
-    onPress(keyCode, action) {
-        const key = this.keys.find((i) => i.code == keyCode)
-        key.actionHandler(action)
+    onPress(e, action) {
+        const key = this.keys.find((i) => i.code == e.code)
+        if (key !== undefined) {
+            key.actionHandler(e, action)
+        }
     }
 }

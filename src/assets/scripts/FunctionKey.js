@@ -3,8 +3,8 @@ import { Key } from './Key'
 export class FunctionKey extends Key {
     constructor(
         keyboard,
-        id,
         code,
+        keyCode,
         enDown,
         enCapsShift,
         enCaps,
@@ -17,8 +17,8 @@ export class FunctionKey extends Key {
     ) {
         super(
             keyboard,
-            id,
             code,
+            keyCode,
             enDown,
             enCapsShift,
             enCaps,
@@ -30,8 +30,9 @@ export class FunctionKey extends Key {
         )
         this.fun = fun
     }
-    actionHandler(action) {
+    actionHandler(e, action) {
         super.actionHandler(action)
+        //this.key.classList.toggle('active', action)
         if (this.fun === 'Shift') {
             this.keyboard.shift = action
             this.keyboard.update()
@@ -50,6 +51,10 @@ export class FunctionKey extends Key {
             }
             this.key.classList.toggle('active', this.keyboard.capsLock)
             this.keyboard.update()
+        }
+        if (this.fun === 'Tab') {
+            e.preventDefault()
+            this.keyboard.textarea.focus()
         }
     }
     changeLang() {

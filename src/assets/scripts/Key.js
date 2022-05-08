@@ -1,8 +1,8 @@
 export class Key {
     constructor(
         keyboard,
-        id,
         code,
+        keyCode,
         enDown,
         enCapsShift,
         enCaps,
@@ -13,23 +13,41 @@ export class Key {
         ruShift
     ) {
         this.keyboard = keyboard
-        this.id = id
         this.code = code
+        this.keyCode = keyCode
         this.enDown = document.createElement('span')
+        this.enDownVal = enDown
         this.enCapsShift = document.createElement('span')
+        this.enCapsShiftVal = enCapsShift
         this.enCaps = document.createElement('span')
+        this.enCapsVal = enCaps
         this.enShift = document.createElement('span')
+        this.enShiftVal = enShift
         this.ruDown = document.createElement('span')
+        this.ruDownVal = ruDown
         this.ruCaps = document.createElement('span')
+        this.ruCapsVal = ruCaps
         this.ruCapsShift = document.createElement('span')
+        this.ruCapsShiftVal = ruCapsShift
         this.ruShift = document.createElement('span')
+        this.ruShiftVal = ruShift
         this.key = document.createElement('div')
         this.rus = document.createElement('span')
         this.eng = document.createElement('span')
-        this.initKey(id, enDown, enCapsShift, enCaps, enShift, ruDown, ruCapsShift, ruCaps, ruShift)
+        this.initKey(
+            code,
+            enDown,
+            enCapsShift,
+            enCaps,
+            enShift,
+            ruDown,
+            ruCapsShift,
+            ruCaps,
+            ruShift
+        )
     }
-    initKey(id, enDown, enCapsShift, enCaps, enShift, ruDown, ruCapsShift, ruCaps, ruShift) {
-        this.key.classList.add('key', id)
+    initKey(code, enDown, enCapsShift, enCaps, enShift, ruDown, ruCapsShift, ruCaps, ruShift) {
+        this.key.classList.add('key', code)
         this.rus.classList.add('rus')
         this.keyboard.langEn && this.rus.classList.add('none')
         this.eng.classList.add('eng')
@@ -140,7 +158,31 @@ export class Key {
         }
     }
 
-    actionHandler(action) {
+    actionHandler(e, action) {
         this.key.classList.toggle('active', action)
+        console.log(this.key)
+
+        if (action) {
+            const cursor = this.keyboard.textarea.selectionStart
+            const text = this.keyboard.textarea.value
+
+            this.keyboard.textarea.value = `${text.slice(
+                0,
+                cursor
+            )}${this.getKeyValue()}${text.slice(cursor)}`
+            this.keyboard.textarea.selectionStart = cursor + 1
+            this.keyboard.textarea.selectionEnd = cursor + 1
+        }
+    }
+
+    getKeyValue() {
+        if (this.keyboard.capsLock && this.keyboard.shift) {
+            return this.keyboard.langEn ? this.enCapsShiftVal : this.ruCapsShiftVal
+        } else if (this.keyboard.shift) {
+            return this.keyboard.langEn ? this.enShiftVal : this.ruShiftVal
+        } else if (this.keyboard.capsLock) {
+            return this.keyboard.langEn ? this.enCapsVal : this.ruCapsVal
+        }
+        return this.keyboard.langEn ? this.enDownVal : this.ruDownVal
     }
 }

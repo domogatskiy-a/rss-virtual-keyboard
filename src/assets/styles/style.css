@@ -99,9 +99,9 @@
 .ArrowRight,
 .Backspace,
 .CapsLock,
-.CtrlLeft,
-.CtrlRight,
-.Del,
+.ControlLeft,
+.ControlRight,
+.Delete,
 .Enter,
 .ShiftLeft,
 .ShiftRight,
@@ -125,7 +125,7 @@
 }
 
 .Delete {
-  width: 44px;
+  width: 40px;
 }
 
 .Enter {
@@ -142,7 +142,7 @@
 
 .AltLeft,
 .AltRight,
-.CtrlLeft {
+.ControlLeft {
   width: 55px;
 }
 /*# sourceMappingURL=style.css.map */

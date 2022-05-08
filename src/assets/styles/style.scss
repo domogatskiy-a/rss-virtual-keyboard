@@ -106,9 +106,9 @@ $color-background-function-key: #c9c8bd;
 .ArrowRight,
 .Backspace,
 .CapsLock,
-.CtrlLeft,
-.CtrlRight,
-.Del,
+.ControlLeft,
+.ControlRight,
+.Delete,
 .Enter,
 .ShiftLeft,
 .ShiftRight,
@@ -132,7 +132,7 @@ $color-background-function-key: #c9c8bd;
 }
 
 .Delete {
-    width: 44px;
+    width: 40px;
 }
 
 .Enter {
@@ -148,6 +148,6 @@ $color-background-function-key: #c9c8bd;
 
 .AltLeft,
 .AltRight,
-.CtrlLeft {
+.ControlLeft {
     width: 55px;
 }
