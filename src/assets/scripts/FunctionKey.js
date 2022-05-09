@@ -1,6 +1,6 @@
-import { Key } from './Key'
+import Key from './Key'
 
-export class FunctionKey extends Key {
+class FunctionKey extends Key {
     constructor(
         keyboard,
         code,
@@ -30,6 +30,7 @@ export class FunctionKey extends Key {
         )
         this.fun = fun
     }
+
     actionHandler(e, action) {
         this.key.classList.toggle('active', action)
 
@@ -58,7 +59,6 @@ export class FunctionKey extends Key {
         if (['▲', '◄', '▼', '►'].includes(this.fun) && action) {
             this.displaySymbol()
         }
-        //console.log(this.fun)
     }
 
     displaySymbol() {
@@ -101,3 +101,5 @@ export class FunctionKey extends Key {
         }
     }
 }
+
+export default FunctionKey

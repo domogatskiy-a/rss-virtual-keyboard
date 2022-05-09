@@ -1,12 +1,12 @@
-import { Key } from './Key'
-import { FunctionKey } from './FunctionKey'
+import Key from './Key'
+import FunctionKey from './FunctionKey'
 
-export class Keyboard {
-    body = document.body
-    wrapper = document.createElement('div')
-    keyboard = document.createElement('div')
-    textarea = document.createElement('textarea')
+class Keyboard {
     constructor(keysData) {
+        this.body = document.body
+        this.wrapper = document.createElement('div')
+        this.keyboard = document.createElement('div')
+        this.textarea = document.createElement('textarea')
         this.keysData = keysData
         this.keys = []
         this.rowCol = [0, 14, 29, 42, 55]
@@ -15,12 +15,12 @@ export class Keyboard {
         this.alt = false
         this.shift = false
         this.ctrl = false
-        this.#initNodes()
+        this.initNodes()
 
         this.eventListener()
     }
 
-    #initNodes() {
+    initNodes() {
         this.wrapper.className = 'wrapper'
 
         this.textarea.className = 'textarea'
@@ -34,22 +34,21 @@ export class Keyboard {
 
     renderInterfaceKeyboard() {
         this.body.appendChild(this.wrapper)
-        //h1
-        let node = document.createElement('h1')
+        const node = document.createElement('h1')
         node.className = 'title'
         node.innerText = 'RSS Virtual keyboard'
         this.wrapper.appendChild(node)
         this.wrapper.appendChild(this.textarea)
         this.wrapper.appendChild(this.keyboard)
 
-        this.#renderKeys()
+        this.renderKeys()
 
         if (localStorage.getItem('keyboardLang') !== null) {
             this.langEn = localStorage.getItem('keyboardLang') === 'true'
             this.update()
         }
 
-        let p = document.createElement('p')
+        const p = document.createElement('p')
         p.innerHTML =
             'Клавиатура создана в операционной системе Windows <br/> Для переключения языка комбинация: ctrl + alt'
         this.wrapper.appendChild(p)
@@ -57,10 +56,10 @@ export class Keyboard {
         this.textarea.focus()
     }
 
-    #renderKeys() {
+    renderKeys() {
         let colInRow = 0
         let divRow
-        for (let i = 0; i < this.keysData.eng.length; i++) {
+        for (let i = 0; i < this.keysData.eng.length; i += 1) {
             let key = {}
             if (this.keysData.eng[i].type !== 'fun') {
                 key = new Key(
@@ -98,10 +97,11 @@ export class Keyboard {
                 divRow.className = 'row'
                 this.keyboard.appendChild(divRow)
             }
-            colInRow++
+            colInRow += 1
             divRow.appendChild(key.key)
         }
     }
+
     update() {
         this.keys.forEach((key) => key.update())
         localStorage.setItem('keyboardLang', this.langEn)
@@ -109,7 +109,6 @@ export class Keyboard {
 
     eventListener() {
         this.keyboard.addEventListener('mousedown', (e) => {
-            //console.log(e.target.parentNode.parentNode)
             this.onClick(e)
         })
         this.keyboard.addEventListener('mouseup', (e) => {
@@ -119,34 +118,30 @@ export class Keyboard {
             this.onClick(e, false)
         })
         document.addEventListener('keydown', (e) => {
-            //console.log(e)
             this.onPress(e, true)
         })
         document.addEventListener('keyup', (e) => {
             this.onPress(e, false)
         })
-
-        //keydown и keyup
-        //event.code
     }
 
     onClick(e, action = true) {
-        const key = this.keys.find((i) => i.key == e.target.parentNode.parentNode)
+        const key = this.keys.find((i) => i.key === e.target.parentNode.parentNode)
         if (key !== undefined) {
             e.preventDefault()
-            action ? (key.active = true) : (key.active = false)
+            key.active = action
             key.actionHandler(e, action)
         }
-
-        //console.log(key)
     }
 
     onPress(e, action) {
-        const key = this.keys.find((i) => i.code == e.code)
+        const key = this.keys.find((i) => i.code === e.code)
         if (key !== undefined) {
             e.preventDefault()
-            action ? (key.active = true) : (key.active = false)
+            key.active = action
             key.actionHandler(e, action)
         }
     }
 }
+
+export default Keyboard

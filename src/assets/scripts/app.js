@@ -1,5 +1,5 @@
 import '../styles/style.css'
-import { Keyboard } from './Keyboard'
+import Keyboard from './Keyboard'
 import engKeys from '../eng.json'
 import rusKeys from '../rus.json'
 

@@ -1,4 +1,4 @@
-export class Key {
+class Key {
     constructor(
         keyboard,
         code,
@@ -47,14 +47,21 @@ export class Key {
             ruShift
         )
     }
+
     initKey(code, enDown, enCapsShift, enCaps, enShift, ruDown, ruCapsShift, ruCaps, ruShift) {
         this.key.classList.add('key', code)
         this.rus.classList.add('rus')
-        this.keyboard.langEn && this.rus.classList.add('none')
+        if (this.keyboard.langEn) {
+            this.rus.classList.add('none')
+        }
         this.eng.classList.add('eng')
-        !this.keyboard.langEn && this.eng.classList.add('none')
+        if (!this.keyboard.langEn) {
+            this.eng.classList.add('none')
+        }
         this.enDown.classList.add('down')
-        !this.keyboard.langEn && this.enDown.classList.add('none')
+        if (!this.keyboard.langEn) {
+            this.enDown.classList.add('none')
+        }
         this.enDown.innerText = enDown
         this.enCapsShift.classList.add('capsShift', 'none')
         this.enCapsShift.innerText = enCapsShift
@@ -63,7 +70,9 @@ export class Key {
         this.enShift.classList.add('shift', 'none')
         this.enShift.innerText = enShift
         this.ruDown.classList.add('down')
-        this.keyboard.langEn && this.ruDown.classList.add('none')
+        if (this.keyboard.langEn) {
+            this.ruDown.classList.add('none')
+        }
         this.ruDown.innerText = ruDown
         this.ruCapsShift.classList.add('capsShift', 'none')
         this.ruCapsShift.innerText = ruCapsShift
@@ -100,50 +109,46 @@ export class Key {
                 this.toggleClass(false, 'ruCapsShift', 'enCapsShift')
                 this.toggleClass(true, 'enDown', 'enCaps', 'enShift', 'ruDown', 'ruCaps', 'ruShift')
             }
-        } else {
-            if (this.keyboard.capsLock) {
-                if (
-                    this.enCaps.classList.contains('none') ||
-                    this.ruCaps.classList.contains('none')
-                ) {
-                    this.toggleClass(false, 'enCaps', 'ruCaps')
-                    this.toggleClass(
-                        true,
-                        'enDown',
-                        'enCapsShift',
-                        'enShift',
-                        'ruDown',
-                        'ruCapsShift',
-                        'ruShift'
-                    )
-                }
-            } else if (this.keyboard.shift) {
-                if (
-                    this.enShift.classList.contains('none') ||
-                    this.ruShift.classList.contains('none')
-                ) {
-                    this.toggleClass(false, 'enShift', 'ruShift')
-                    this.toggleClass(
-                        true,
-                        'enDown',
-                        'enCapsShift',
-                        'ruDown',
-                        'ruCapsShift',
-                        'enCaps',
-                        'ruCaps'
-                    )
-                }
-            } else {
-                this.defaultClass()
+        } else if (this.keyboard.capsLock) {
+            if (this.enCaps.classList.contains('none') || this.ruCaps.classList.contains('none')) {
+                this.toggleClass(false, 'enCaps', 'ruCaps')
+                this.toggleClass(
+                    true,
+                    'enDown',
+                    'enCapsShift',
+                    'enShift',
+                    'ruDown',
+                    'ruCapsShift',
+                    'ruShift'
+                )
             }
+        } else if (this.keyboard.shift) {
+            if (
+                this.enShift.classList.contains('none') ||
+                this.ruShift.classList.contains('none')
+            ) {
+                this.toggleClass(false, 'enShift', 'ruShift')
+                this.toggleClass(
+                    true,
+                    'enDown',
+                    'enCapsShift',
+                    'ruDown',
+                    'ruCapsShift',
+                    'enCaps',
+                    'ruCaps'
+                )
+            }
+        } else {
+            this.defaultClass()
         }
-        //this.toggleClass(true, 'enDown', 'enCapsShift', 'enCaps', 'enShift', 'ruDown', 'ruCapsShift', 'ruCaps', 'ruShift')
     }
+
     toggleClass(mode, ...names) {
-        for (let name of names) {
-            this[name].classList.toggle('none', mode)
+        for (let name = 0; name < names.length; name += 1) {
+            this[names[name]].classList.toggle('none', mode)
         }
     }
+
     defaultClass() {
         if (this.enDown.classList.contains('none') || this.ruDown.classList.contains('none')) {
             this.toggleClass(false, 'enDown', 'ruDown')
@@ -162,8 +167,6 @@ export class Key {
     actionHandler(e, action) {
         this.key.classList.toggle('active', action)
 
-        //console.log(this.key)
-
         if (action) {
             this.displaySymbol()
         }
@@ -181,16 +184,17 @@ export class Key {
     }
 
     getKeyValue() {
-        //console.log(1)
         if (this.keyboard.capsLock && this.keyboard.shift) {
             return this.keyboard.langEn ? this.enCapsShiftVal : this.ruCapsShiftVal
-        } else if (this.keyboard.shift) {
+        }
+        if (this.keyboard.shift) {
             return this.keyboard.langEn ? this.enShiftVal : this.ruShiftVal
-        } else if (this.keyboard.capsLock) {
+        }
+        if (this.keyboard.capsLock) {
             return this.keyboard.langEn ? this.enCapsVal : this.ruCapsVal
         }
         return this.keyboard.langEn ? this.enDownVal : this.ruDownVal
     }
 }
 
-//export default Key
+export default Key
