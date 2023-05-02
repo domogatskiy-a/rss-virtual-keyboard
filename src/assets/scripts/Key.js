@@ -94,6 +94,7 @@ class Key {
     }
 
     update() {
+        if(this.fun) return
         if (!this.keyboard.langEn && this.rus.classList.contains('none')) {
             this.toggleClass(false, 'rus')
             this.toggleClass(true, 'eng')
